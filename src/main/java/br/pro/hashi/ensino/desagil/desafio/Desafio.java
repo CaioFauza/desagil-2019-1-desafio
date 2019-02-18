@@ -17,5 +17,9 @@ public class Desafio {
         cpuPlayer.row = 8;
         cpuPlayer.col = 18;
         cpuPlayer.board = board;
+
+        System.out.println("Caio");
     }
+
+
 }
