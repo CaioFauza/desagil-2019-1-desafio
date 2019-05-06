@@ -3,7 +3,7 @@ package br.pro.hashi.ensino.desagil.desafio.model;
 import java.util.Stack;
 
 public class CpuPlayer extends Player {
-
+    private boolean gameEnded=false;
     // Uma das principais diferenças entre a busca na árvore e a busca no tabuleiro
     // é o conceito de localização: no primeiro caso, a localização é representada
     // por um nó da árvore, enquanto no segundo ela é representada por um índice de
@@ -49,35 +49,37 @@ public class CpuPlayer extends Player {
 
     // O corpo do loop implícito mencionado acima é este método.
     public void move() {
-        if (!stack.isEmpty()) {
+        if(!gameEnded) {
+            if (!stack.isEmpty()) {
 
-            // Na árvore, precisávamos dar um peek na pilha para descobrir a
-            // localização atual. Aqui não precisamos fazer isso, pois já
-            // sabemos essa localização: ela é dada pelos atributos row e col.
+                // Na árvore, precisávamos dar um peek na pilha para descobrir a
+                // localização atual. Aqui não precisamos fazer isso, pois já
+                // sabemos essa localização: ela é dada pelos atributos row e col.
 
-            if (row > 0 && !visited[row - 1][col]) {
-                move(-1, 0);
-                save();
-            } else if (col < numCols - 1 && !visited[row][col + 1]) {
-                move(0, 1);
-                save();
-            } else if (row < numRows - 1 && !visited[row + 1][col]) {
-                move(1, 0);
-                save();
-            } else if (col > 0 && !visited[row][col - 1]) {
-                move(0, -1);
-                save();
-            } else {
-                stack.pop();
+                if (row > 0 && !visited[row - 1][col]) {
+                    move(-1, 0);
+                    save();
+                } else if (col < numCols - 1 && !visited[row][col + 1]) {
+                    move(0, 1);
+                    save();
+                } else if (row < numRows - 1 && !visited[row + 1][col]) {
+                    move(1, 0);
+                    save();
+                } else if (col > 0 && !visited[row][col - 1]) {
+                    move(0, -1);
+                    save();
+                } else {
+                    stack.pop();
 
-                // Por outro lado, quando queremos dar um passo para trás, temos
-                // que dar um peek para descobrir qual era a localização anterior.
+                    // Por outro lado, quando queremos dar um passo para trás, temos
+                    // que dar um peek para descobrir qual era a localização anterior.
 
-                if (!stack.isEmpty()) {
-                    Node node = stack.peek();
+                    if (!stack.isEmpty()) {
+                        Node node = stack.peek();
 
-                    row = node.getRow();
-                    col = node.getCol();
+                        row = node.getRow();
+                        col = node.getCol();
+                    }
                 }
             }
         }
@@ -108,5 +110,13 @@ public class CpuPlayer extends Player {
         private int getCol() {
             return col;
         }
+
+
+
+        }
+
+    public void setGameEnded() {
+        gameEnded = true;
+
     }
 }

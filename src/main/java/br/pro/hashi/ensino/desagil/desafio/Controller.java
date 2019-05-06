@@ -30,7 +30,9 @@ public class Controller implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent event) {
+
         HumanPlayer humanPlayer = model.getHumanPlayer();
+
 
         // Para agir de acordo com a tecla que foi pressionada, comparamos o key code do evento com as
         // constantes disponíveis na classe KeyEvent. Uma lista dessas constantes pode ser vista em
@@ -64,10 +66,28 @@ public class Controller implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        HumanPlayer humanPlayer = model.getHumanPlayer();
         CpuPlayer cpuPlayer = model.getCpuPlayer();
+        if(cpuPlayer.getRow() == 4 && cpuPlayer.getCol() == 14){
+            cpuPlayer.setGameEnded();
+            humanPlayer.setGameEnded();
+            model.setWinner(cpuPlayer);
+
+
+        }
+        if (humanPlayer.getRow() == 4 && humanPlayer.getCol() == 14){
+            humanPlayer.setGameEnded();
+            cpuPlayer.setGameEnded();
+            model.setWinner(humanPlayer);
+
+
+
+        }
 
         cpuPlayer.move();
 
+
         view.repaint();
+
     }
 }

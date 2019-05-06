@@ -4,6 +4,7 @@ import br.pro.hashi.ensino.desagil.desafio.model.Model;
 
 import javax.swing.*;
 
+
 public class Desafio {
     public static void main(String[] args) {
         Model model = new Model();
@@ -41,6 +42,7 @@ public class Desafio {
 
             // Inicia o relógio.
             timer.start();
+
         });
     }
 }

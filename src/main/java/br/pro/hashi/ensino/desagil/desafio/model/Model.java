@@ -26,6 +26,7 @@ public class Model {
 
     public void setWinner(Player winner) {
         this.winner = winner;
+
     }
 
     public Board getBoard() {
